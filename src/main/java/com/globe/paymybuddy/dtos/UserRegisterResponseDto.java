@@ -1,5 +1,7 @@
 package com.globe.paymybuddy.dtos;
 
 public record UserRegisterResponseDto(
-        String email
+        String username,
+        String email,
+        Double balance
 ) {}

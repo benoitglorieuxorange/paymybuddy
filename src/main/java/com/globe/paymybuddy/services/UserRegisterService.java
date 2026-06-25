@@ -2,6 +2,7 @@ package com.globe.paymybuddy.services;
 
 import com.globe.paymybuddy.dtos.UserRegisterRequestDto;
 import com.globe.paymybuddy.dtos.UserRegisterResponseDto;
+import com.globe.paymybuddy.mappers.UserMapper;
 import com.globe.paymybuddy.models.User;
 import com.globe.paymybuddy.repositories.UserRepository;
 import org.springframework.stereotype.Service;
@@ -10,9 +11,11 @@ import org.springframework.stereotype.Service;
 public class UserRegisterService {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-    public UserRegisterService(UserRepository userRepository) {
+    public UserRegisterService(UserRepository userRepository, UserMapper userMapper) {
         this.userRepository = userRepository;
+        this.userMapper = userMapper;
     }
 
 
@@ -23,12 +26,8 @@ public class UserRegisterService {
         if (userRepository.findByEmail(request.email()).isPresent()) {
             throw new IllegalArgumentException("Email already exists");
         }
-        User user = new User();
-        user.setUsername(request.userName());
-        user.setEmail(request.email());
-        user.setPassword(request.password());
-        user.setBalance(request.balance());
+        User user = userMapper.toEntity(request);
         userRepository.save(user);
-        return new UserRegisterResponseDto(user.getEmail());
+        return userMapper.toDto(user);
     }
 }
