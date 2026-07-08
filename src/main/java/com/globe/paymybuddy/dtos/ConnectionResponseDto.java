@@ -1,7 +1,7 @@
 package com.globe.paymybuddy.dtos;
 
 public record ConnectionResponseDto(
-   Long ConnectionId,
+   Long connectionId,
    String connectedUserName,
    String connectedUserEmail
 ) {}

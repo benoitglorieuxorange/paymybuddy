@@ -35,7 +35,6 @@ public class Connection {
         this.connectedUser = connectedUser;
     }
 
-
     // Getters and Setters
 
     public Long getId() {
