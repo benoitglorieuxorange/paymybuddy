@@ -2,9 +2,8 @@ package com.globe.paymybuddy.dtos;
 
 import java.math.BigDecimal;
 
-public record UserRegisterRequestDto(
+public record ProfilResponseDto(
         String username,
         String email,
-        String password,
         BigDecimal balance
 ) {}
