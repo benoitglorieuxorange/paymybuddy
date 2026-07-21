@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -34,7 +35,7 @@ public class User implements UserDetails {
 
     @DecimalMin(value = "0.00", message = "Balance could not be negative")
     @Column(nullable = false)
-    private double balance;
+    private BigDecimal balance;
 
     // Connection add by this user
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -55,7 +56,7 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String userName, String password, String email, Double balance) {
+    public User(String userName, String password, String email, BigDecimal balance) {
         this.username = userName;
         this.password = password;
         this.email = email;
@@ -119,6 +120,10 @@ public class User implements UserDetails {
         this.email = email;
     }
 
+    public String getProfileUsername() {
+        return username;
+    }
+
         public void setPassword(String password) {
         this.password = password;
     }
@@ -127,11 +132,11 @@ public class User implements UserDetails {
         this.username = username;
     }
 
-    public double getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 

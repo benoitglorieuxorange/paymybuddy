@@ -23,7 +23,7 @@ public class ProfilService {
     public ProfilResponseDto getProfilByUserId(Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(userId));
-        return new ProfilResponseDto(user.getEmail(), user.getUsername());
+        return new ProfilResponseDto(user.getProfileUsername(), user.getEmail(), user.getBalance());
     }
 
 
