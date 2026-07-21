@@ -5,6 +5,8 @@ import com.globe.paymybuddy.dtos.ConnectionResponseDto;
 import com.globe.paymybuddy.services.ConnectionService;
 import com.globe.paymybuddy.services.JwtService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,7 @@ import java.util.List;
 @RequestMapping("/api/connections")
 public class ConnectionController {
 
+    private final Logger log= LoggerFactory.getLogger(ConnectionController.class);
     private final ConnectionService connectionService;
     private final JwtService jwtService;
 
@@ -30,6 +33,8 @@ public class ConnectionController {
 
         String token = authHeader.substring(7);
         Long senderId = jwtService.extractUserId(token); //recupere l'id du sender dans le token
+
+        log.info("Creation d'un nouvelle connection entre {} et {} ", senderId, requestDto.email());
 
         ConnectionResponseDto response = connectionService.addConnection(senderId, requestDto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);

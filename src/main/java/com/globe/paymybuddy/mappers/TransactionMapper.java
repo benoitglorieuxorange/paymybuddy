@@ -28,6 +28,7 @@ public class TransactionMapper {
 
     public TransactionResponseDto toDto(Transaction transaction) {
         return new TransactionResponseDto(
+                transaction.getId(),
                 transaction.getReceiver().getEmail(),
                 transaction.getAmount(),
                 transaction.getDescription()
