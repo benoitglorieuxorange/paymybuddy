@@ -23,10 +23,9 @@ Le solde de la personne connectée apparaît sur la page d'accueil et dans son p
 <img width="565" height="502" alt="image" src="https://github.com/user-attachments/assets/d41529c7-b5c1-411b-b6ed-7b9b777d29bd" />
 
 ## Branches
-les branches des différentes features ont été laissé volontairement afin de montré la gestion du versionning pour ce projet.
-
+les branches des différentes features ont été laissé volontairement afin de montré la gestion du versionning pour ce projet
 ## Front end
-La partie  Front a été developper en Angular, le repository se trouve à l'adresse suivante :
+La partie  Front a été developpée en Angular, le repository se trouve à l'adresse suivante :
 https://github.com/benoitglorieuxorange/paymybuddy-front.git
-une fois de repository cloner, se rendre dans le dossier et faire un ng serve pour lancer l'application.
+une fois de repository cloner, se rendre dans le dossier Front et faire un ng serve pour lancer l'application.
 
