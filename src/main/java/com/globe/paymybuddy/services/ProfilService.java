@@ -6,6 +6,7 @@ import com.globe.paymybuddy.exceptions.InvalidPasswordException;
 import com.globe.paymybuddy.models.User;
 import com.globe.paymybuddy.repositories.UserRepository;
 import com.globe.paymybuddy.exceptions.UserNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public class ProfilService {
         return new ProfilResponseDto(user.getProfileUsername(), user.getEmail(), user.getBalance());
     }
 
-
+    @Transactional
     public void changePassword(Long userId, ChangePasswordDto dto) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(userId));
