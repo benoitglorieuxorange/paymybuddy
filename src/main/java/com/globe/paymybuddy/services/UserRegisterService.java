@@ -5,6 +5,7 @@ import com.globe.paymybuddy.dtos.UserRegisterResponseDto;
 import com.globe.paymybuddy.mappers.UserMapper;
 import com.globe.paymybuddy.models.User;
 import com.globe.paymybuddy.repositories.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,6 +22,7 @@ public class UserRegisterService {
 
     // User Registration
 
+    @Transactional
     public UserRegisterResponseDto createUser(UserRegisterRequestDto request) {
 
         if (userRepository.findByEmail(request.email()).isPresent()) {

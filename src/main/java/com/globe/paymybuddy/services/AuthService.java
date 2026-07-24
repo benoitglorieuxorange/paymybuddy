@@ -5,10 +5,12 @@ import com.globe.paymybuddy.dtos.UserLoginRequestDto;
 import com.globe.paymybuddy.dtos.UserRegistrationRequestDto;
 import com.globe.paymybuddy.models.User;
 import com.globe.paymybuddy.repositories.UserRepository;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -35,6 +37,7 @@ public class AuthService {
         return jwtService.generateToken(user);
     }
 
+    @Transactional
     public void register(UserRegistrationRequestDto request) {
         if (userRepository.findByEmail(request.email()).isPresent()) {
             throw new RuntimeException("Email déjà utilisé");
